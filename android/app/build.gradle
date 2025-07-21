@@ -5,6 +5,13 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
+ext {
+    // App version
+    versionMajor = 0   // library update, major UI/feature change
+    versionMinor = 0    // minor UI/feature change
+    patchNumber = 0    // bugfix
+    buildNumber = 1
+}
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file("local.properties")
 if (localPropertiesFile.exists()) {
@@ -25,7 +32,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace = "com.example.job_tracker"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 34
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -38,8 +45,8 @@ android {
         applicationId = "com.example.job_tracker"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        minSdk = 23
+        targetSdk = 34
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
     }
@@ -49,10 +56,31 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.debug
+            minifyEnabled false
+            shrinkResources false
+        }
+    }
+    flavorDimensions "app"
+
+    productFlavors {
+        dev {
+            dimension "app"
+            resValue "string", "app_name", "Raisehand Dev"
+        }
+        prod {
+            dimension "app"
+            resValue "string", "app_name", "Raisehand"
         }
     }
 }
 
 flutter {
     source = "../.."
+}
+private Integer generateVersionCode() {
+    return versionMajor * 1000000 + versionMinor * 10000 + patchNumber * 100 + buildNumber
+}
+
+private String generateVersionName() {
+    return "${versionMajor}.${versionMinor}.${patchNumber}"
 }
