@@ -96,7 +96,7 @@ class AppSizes {
   /*padding */
   static double paddingHorizontalPage = s20;
   static EdgeInsets generalPadding =
-      EdgeInsets.symmetric(horizontal: AppSizes.s16, vertical: AppSizes.s16);
+      EdgeInsets.symmetric(horizontal: AppSizes.s20, vertical: AppSizes.s16);
 
   static double roundedCard = s5;
 
