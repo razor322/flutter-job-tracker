@@ -14,6 +14,11 @@ class AppConstants {
   static const Duration SPLASH_DURATION = Duration(seconds: 2);
   static const Duration TOAST_DURATION = Duration(seconds: 5);
 
+  ///HIVE BOX NAME
+  static const String HIVE_BOX_NAME_PROD = "LamaranBoxProd";
+  static const String HIVE_BOX_NAME_DEV = "LamaranBoxDev";
+  static const String HIVE_BOX_NAME = "LamaranBox";
+
   /// DIO HEADER
   static const Map<String, String> DIO_HEADER = {
     "Content-Type": "application/json"
